@@ -1,14 +1,7 @@
 function applyStyle(style) {
   const head = document.head;
-  const styleEl = createStyle(style);
-  head.appendChild(styleEl)
-}
-
-function createStyle(styleStr) {
-  const style = document.createElement("style");
-  style.appendChild(prepareStyle(styleStr));
-  
-  return style;
+  const styleEl = head.querySelector("style");
+  styleEl.appendChild(prepareStyle(style));
 }
 
 function prepareStyle(style = `
