@@ -30,7 +30,7 @@ function headerStyling() {
       background-color: #211A1D;
 
       font-size: 36px;
-      font-weight: lighter;
+      font-weight: 700;
       height: 10%;
 
       display: flex;
