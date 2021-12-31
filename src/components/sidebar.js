@@ -1,17 +1,17 @@
 import * as Styles from "../styles/style.js";
-import sidebarButton from "./smol/sidebarButton.js";
-import sidebarInput from "./smol/sidebarInput.js";
+import sidebarButton from "./sidebar/sidebarButton.js";
+import sidebarInput from "./sidebar/sidebarInput.js";
 
 function sidebar() {
-  const sidebarEl = sidebarSetup();
+  const sidebarEl = componentSetup();
 
   addListeners(sidebarEl);
 
-  Styles.applyStyle(getStyleString());
   return sidebarEl;
 }
 
-function sidebarSetup() {
+function componentSetup() {
+  Styles.applyStyle(getStyleString());
   const sidebarEl = document.createElement("aside");
   sidebarEl.setAttribute("id", "sidebar");
 
@@ -34,6 +34,35 @@ function addListeners(sidebar) {
   sidebar.addEventListener("enterProject", (e) => getEnteredProject(e));
   sidebar.addEventListener("cancelProject", (e) => cancelNewProject(e));
 }
+
+function getStyleString() {
+  return `
+    #sidebar {
+      color: #211A1D;
+      background-color: #F1E3F3;
+
+      width: 20%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #sidebar h3 {
+      text-align: center;
+
+      width: 60%;
+      
+      padding: 15px 0;
+      margin: 15px 0;
+ 
+      border-bottom: 1px solid black;
+    }
+  `;
+}
+
+//--------------
 
 function addProjectClicked(e) {
   const sidebar = e.currentTarget;
@@ -70,33 +99,6 @@ function cancelNewProject(e) {
 
   sidebar.removeChild(input);
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
-}
-
-function getStyleString() {
-  return `
-    #sidebar {
-      color: #211A1D;
-      background-color: #F1E3F3;
-
-      width: 20%;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #sidebar h3 {
-      text-align: center;
-
-      width: 60%;
-      
-      padding: 15px 0;
-      margin: 15px 0;
- 
-      border-bottom: 1px solid black;
-    }
-  `;
 }
 
 export default sidebar;

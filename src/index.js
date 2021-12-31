@@ -5,7 +5,6 @@ import footer from "./components/footer";
 
 import sidebar from "./components/sidebar";
 import todoList from "./components/todoList";
-// import todo from "./components/todo";
 
 function setupPage(contentHook) {
   contentHook.appendChild(header());

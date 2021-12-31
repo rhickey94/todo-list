@@ -1,13 +1,19 @@
 import * as Styles from "../../styles/style.js";
 
 function sidebarInput() {
+  const input = componentSetup();
+  
+  addListeners(input);
+
+  return input;
+}
+
+function componentSetup() {
   const input = document.createElement("input");
   input.setAttribute("type", "text");
   input.setAttribute("class", "sidebarInput");
   input.setAttribute("placeholder", "Add new project");
   input.setAttribute("autofocus", "autofocus");
-
-  addListeners(input);
 
   Styles.applyStyle(getStyleString());
   return input;

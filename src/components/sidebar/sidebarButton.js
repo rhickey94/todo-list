@@ -1,12 +1,18 @@
 import * as Styles from "../../styles/style.js";
 
 function sidebarButton(text) {
+  const button = componentSetup(text);
+  
+  addListeners(button);
+  
+  return button;
+}
+
+function componentSetup(text) {
   const button = document.createElement("button");
   button.setAttribute("class", "sidebarButton");
-
+  
   button.innerHTML = text;
-
-  addListeners(button);
 
   Styles.applyStyle(getStyleString());
   return button;

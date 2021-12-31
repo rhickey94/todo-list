@@ -1,6 +1,12 @@
 import * as Styles from "../styles/style.js";
 
 function header() {
+  const header = componentSetup()
+  
+  return header;
+}
+
+function componentSetup() {
   const header = document.createElement("header");
   header.setAttribute("id", "header");
 
