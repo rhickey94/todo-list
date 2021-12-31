@@ -1,5 +1,7 @@
-import todo from './components/todo'
+import todo from "./components/todo";
+import header from "./components/header";
+import "./style.css";
 
-const hook = document.querySelector('#content')
+const hook = document.querySelector("#content");
 
-hook.appendChild(todo("To-do", "things i have to doo!!", "soon", "high"))
+hook.appendChild(header());
