@@ -6,8 +6,24 @@ function sidebarButton(text) {
 
   button.innerHTML = text;
 
+  addListeners(button);
+
   Styles.applyStyle(getStyleString());
   return button;
+}
+
+function addListeners(button) {
+  const projectSelected = new CustomEvent("selectProject", {
+    bubbles:true
+  })
+  if (button.innerHTML.includes("Add")) {
+    const addProjectClicked = new CustomEvent("addProject", {
+      bubbles: true,
+      detail: { text: () => button.innerHTML },
+    });
+    button.addEventListener("click", (e) => e.target.dispatchEvent(addProjectClicked));
+  }
+  button.addEventListener("click", e => e.target.dispatchEvent(projectSelected));
 }
 
 function getStyleString() {
@@ -20,13 +36,18 @@ function getStyleString() {
       width: 60%;
 
       border-radius: 5px;
-      border: 0;
+      border: none;
       padding: 5px;
 
       font-size: 18px;
     }
 
     .sidebarButton:hover {
+      background-color: #177E89;
+      color: #F1E3F3;
+    }
+
+    .sidebarButton_selected {
       background-color: #177E89;
       color: #F1E3F3;
     }
