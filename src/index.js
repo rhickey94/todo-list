@@ -7,4 +7,3 @@ const hook = document.querySelector("#content");
 
 hook.appendChild(header());
 hook.appendChild(footer());
-
