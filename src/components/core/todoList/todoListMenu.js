@@ -1,4 +1,4 @@
-import * as Styles from "../../styles/style.js";
+import * as Styles from "../../../styles/style";
 import todoListButton from "./todoListButton";
 
 function todoListMenu() {

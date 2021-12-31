@@ -1,8 +1,8 @@
-import * as Styles from "../styles/style.js";
-import sidebarButton from "./sidebar/sidebarButton.js";
-import sidebarInput from "./sidebar/sidebarInput.js";
+import * as Styles from "../../styles/style";
+import sidebarButton from "./sidebar/sidebarButton";
+import sidebarInput from "./sidebar/sidebarInput";
 
-function sidebar() {
+function sidebarContainer() {
   const sidebarEl = componentSetup();
 
   addListeners(sidebarEl);
@@ -101,4 +101,4 @@ function cancelNewProject(e) {
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
 }
 
-export default sidebar;
+export default sidebarContainer;

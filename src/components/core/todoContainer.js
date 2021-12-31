@@ -1,8 +1,8 @@
-import * as Styles from "../styles/style.js";
-import todoListMenu from "./todoList/todoListMenu.js";
-import todoContainer from "./todoList/todoContainer.js";
+import * as Styles from "../../styles/style";
+import todoListMenu from "./todoList/todoListMenu";
+import todoList from "./todoList/todoList"
 
-function todoList() {
+function todoContainer() {
   const todoListEl = componentSetup();
 
   addListeners(todoListEl);
@@ -13,10 +13,10 @@ function todoList() {
 function componentSetup() {
   Styles.applyStyle(getStyleString());
   const todoListEl = document.createElement("section");
-  todoListEl.setAttribute("id", "todoList");
+  todoListEl.setAttribute("id", "todoContainer");
 
   todoListEl.appendChild(todoListMenu());
-  todoListEl.appendChild(todoContainer());
+  todoListEl.appendChild(todoList());
 
   return todoListEl;
 }
@@ -25,7 +25,7 @@ function addListeners(todoListEl) {}
 
 function getStyleString() {
   return `
-    #todoList {
+    #todoContainer {
       background-color: #BAD1CD;
       flex-grow: 1;
 
@@ -35,4 +35,4 @@ function getStyleString() {
   `;
 }
 
-export default todoList;
+export default todoContainer;

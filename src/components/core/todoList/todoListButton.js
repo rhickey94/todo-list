@@ -1,4 +1,4 @@
-import * as Styles from "../../styles/style.js";
+import * as Styles from "../../../styles/style";
 
 function todoListButton(text) {
   const button = componentSetup(text);

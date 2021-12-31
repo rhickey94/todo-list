@@ -1,4 +1,5 @@
-import * as Styles from "../../styles/style.js";
+import * as Styles from "../../../styles/style";
+
 
 function sidebarInput() {
   const input = componentSetup();
