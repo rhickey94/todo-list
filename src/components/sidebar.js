@@ -1,7 +1,17 @@
 import * as Styles from "../styles/style.js";
 import sidebarButton from "./smol/sidebarButton.js";
+import sidebarInput from "./smol/sidebarInput.js";
 
 function sidebar() {
+  const sidebarEl = sidebarSetup();
+
+  addListeners(sidebarEl);
+
+  Styles.applyStyle(getStyleString());
+  return sidebarEl;
+}
+
+function sidebarSetup() {
   const sidebarEl = document.createElement("aside");
   sidebarEl.setAttribute("id", "sidebar");
 
@@ -10,10 +20,56 @@ function sidebar() {
 
   sidebarEl.appendChild(sidebarHeading);
   sidebarEl.appendChild(sidebarButton("Project 1"));
+  sidebarEl.appendChild(sidebarButton("Project 2"));
+  sidebarEl.appendChild(sidebarButton("Project 3"));
+  sidebarEl.appendChild(sidebarButton("Project 4"));
   sidebarEl.appendChild(sidebarButton("&plus; Add new project"));
 
-  Styles.applyStyle(getStyleString());
   return sidebarEl;
+}
+
+function addListeners(sidebar) {
+  sidebar.addEventListener("addProject", (e) => addProjectClicked(e));
+  sidebar.addEventListener("selectProject", (e) => selectProject(e));
+  sidebar.addEventListener("enterProject", (e) => getEnteredProject(e));
+  sidebar.addEventListener("cancelProject", (e) => cancelNewProject(e));
+}
+
+function addProjectClicked(e) {
+  const sidebar = e.currentTarget;
+  const button = e.target;
+  const input = sidebarInput();
+
+  sidebar.removeChild(button);
+  sidebar.appendChild(input);
+}
+
+function selectProject(e) {
+  const sidebarButtons = e.currentTarget.querySelectorAll("button");
+  sidebarButtons.forEach(button => {
+    button.classList.remove("sidebarButton_selected");
+  });
+
+  const button = e.target;
+  button.classList.add("sidebarButton_selected")
+}
+
+function getEnteredProject(e) {
+  const sidebar = e.currentTarget;
+  const input = e.target;
+  const projectName = e.detail.text();
+
+  sidebar.removeChild(input);
+  sidebar.appendChild(sidebarButton(projectName));
+  sidebar.appendChild(sidebarButton("&plus; Add new project"));
+}
+
+function cancelNewProject(e) {
+  const sidebar = e.currentTarget;
+  const input = e.target;
+
+  sidebar.removeChild(input);
+  sidebar.appendChild(sidebarButton("&plus; Add new project"));
 }
 
 function getStyleString() {
