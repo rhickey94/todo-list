@@ -17,12 +17,12 @@ function header() {
 
 function createStyle() {
   const style = document.createElement("style");
-  style.appendChild(headerStyling());
+  style.appendChild(styling());
   
   return style;
 }
 
-function headerStyling() {
+function styling() {
   const css = `
 
     #header { 
