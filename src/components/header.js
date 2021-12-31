@@ -14,7 +14,7 @@ function header() {
   return header;
 }
 
-function getStyleString(){
+function getStyleString() {
   return `
     #header { 
       color: #F1E3F3;

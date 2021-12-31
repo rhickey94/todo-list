@@ -1,7 +1,3 @@
-import * as Styles from "../styles/style.js"
+import * as Styles from "../styles/style.js";
 
-function background() {
-  
-  
-
-}
+function background() {}

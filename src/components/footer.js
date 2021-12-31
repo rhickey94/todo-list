@@ -1,29 +1,20 @@
-function footer() {
-  const head = document.head;
-  const style = createStyle();
-  head.appendChild(style);
+import * as Styles from "../styles/style.js";
 
+function footer() {
   const footer = document.createElement("footer");
   footer.setAttribute("id", "footer");
 
   const div = document.createElement("div");
-  div.textContent = "Copyright © The Odin Project 2021"
+  div.textContent = "Copyright © The Odin Project 2021";
 
   footer.appendChild(div);
 
+  Styles.applyStyle(getStyleString());
   return footer;
 }
 
-function createStyle() {
-  const style = document.createElement("style");
-  style.appendChild(styling());
-  
-  return style;
-}
-
-function styling() {
-  const css = `
-
+function getStyleString() {
+  return `
     #footer { 
       color: #F1E3F3;
       background-color: #211A1D;
@@ -36,10 +27,7 @@ function styling() {
       align-items: center;
       justify-content: center;
     }
-    
-    `;
-
-  return document.createTextNode(css);
+  `;
 }
 
 export default footer;
