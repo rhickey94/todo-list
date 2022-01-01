@@ -3,8 +3,8 @@ import header from "./components/header";
 import background from "./components/background";
 import footer from "./components/footer";
 
-import sidebar from "./components/core/sidebarContainer";
-import todoContainer from "./components/core/todoContainer";
+import sidebar from "./components/core/sidebar";
+import todoList from "./components/core/todoList";
 
 function setupPage(contentHook) {
   contentHook.appendChild(header());
@@ -17,4 +17,6 @@ setupPage(hook);
 
 const backgroundHook = document.querySelector("#main");
 backgroundHook.appendChild(sidebar());
-backgroundHook.appendChild(todoContainer());
+backgroundHook.appendChild(todoList());
+
+document.querySelector(".project").click();

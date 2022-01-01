@@ -1,6 +1,5 @@
 import * as Styles from "../../../styles/style";
 
-
 function sidebarInput() {
   const input = componentSetup();
   
@@ -14,7 +13,6 @@ function componentSetup() {
   input.setAttribute("type", "text");
   input.setAttribute("class", "sidebarInput");
   input.setAttribute("placeholder", "Add new project");
-  input.setAttribute("autofocus", "autofocus");
 
   Styles.applyStyle(getStyleString());
   return input;

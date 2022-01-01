@@ -1,9 +1,14 @@
+import { project1 } from "../../../testData";
+import { renderTasks } from "./todoList";
+import Project from "../../objects/Project";
+import Projects from "../../objects/Projects";
+
 import * as Styles from "../../styles/style";
 import sidebarButton from "./sidebar/sidebarButton";
 import sidebarInput from "./sidebar/sidebarInput";
-import todoContainer from "./todoContainer";
 
-export const projects = {};
+export const projects = Projects([project1]);
+projects.setCurrentProject(project1);
 
 function sidebarContainer() {
   const sidebarEl = componentSetup();
@@ -18,15 +23,7 @@ function componentSetup() {
   const sidebarEl = document.createElement("aside");
   sidebarEl.setAttribute("id", "sidebar");
 
-  const sidebarHeading = document.createElement("h3");
-  sidebarHeading.textContent = "Projects";
-
-  sidebarEl.appendChild(sidebarHeading);
-  // sidebarEl.appendChild(sidebarButton("Project 1"));
-  // sidebarEl.appendChild(sidebarButton("Project 2"));
-  // sidebarEl.appendChild(sidebarButton("Project 3"));
-  // sidebarEl.appendChild(sidebarButton("Project 4"));
-  sidebarEl.appendChild(sidebarButton("&plus; Add new project"));
+  renderProjects(sidebarEl);
 
   return sidebarEl;
 }
@@ -36,6 +33,7 @@ function addListeners(sidebar) {
   sidebar.addEventListener("selectProject", (e) => selectProject(e));
   sidebar.addEventListener("enterProject", (e) => getEnteredProject(e));
   sidebar.addEventListener("cancelProject", (e) => cancelNewProject(e));
+  sidebar.addEventListener("enterTodo", (e) => console.log(e));
 }
 
 function getStyleString() {
@@ -67,6 +65,20 @@ function getStyleString() {
 
 //--------------
 
+function renderProjects(sidebar) {
+  sidebar.innerHTML = "";
+
+  const sidebarHeading = document.createElement("h3");
+  sidebarHeading.textContent = "Projects";
+
+  sidebar.appendChild(sidebarHeading);
+
+  projects.getProjects().forEach((project) => {
+    sidebar.appendChild(sidebarButton(project.getName()));
+  });
+  sidebar.appendChild(sidebarButton("&plus; Add new project"));
+}
+
 function addProjectClicked(e) {
   const sidebar = e.currentTarget;
   const button = e.target;
@@ -74,26 +86,38 @@ function addProjectClicked(e) {
 
   sidebar.removeChild(button);
   sidebar.appendChild(input);
-}
-
-function selectProject(e) {
-  const sidebarButtons = e.currentTarget.querySelectorAll("button");
-  sidebarButtons.forEach(button => {
-    button.classList.remove("sidebarButton_selected");
-  });
-
-  const button = e.target;
-  button.classList.add("sidebarButton_selected")
+  document.querySelector(".sidebarInput").focus();
 }
 
 function getEnteredProject(e) {
   const sidebar = e.currentTarget;
-  const input = e.target;
   const projectName = e.detail.text();
 
-  sidebar.removeChild(input);
-  sidebar.appendChild(sidebarButton(projectName));
-  sidebar.appendChild(sidebarButton("&plus; Add new project"));
+  projects.addProject(Project(projectName));
+
+  renderProjects(sidebar);
+}
+
+function selectProject(e) {
+  const sidebarButtons = e.currentTarget.querySelectorAll("button");
+  sidebarButtons.forEach((button) => {
+    button.classList.remove("sidebarButton_selected");
+  });
+
+  const button = e.target;
+  button.classList.add("sidebarButton_selected");
+
+  const projectName = button.textContent;
+  const project = projects.getProjects().filter((project) => project.getName() === projectName)[0];
+
+  //set project
+  projects.setCurrentProject(project);
+
+  const projectTasks = project.getTasks();
+
+  const todoList = document.querySelector("#todoList");
+
+  renderTasks(todoList, projectTasks);
 }
 
 function cancelNewProject(e) {
@@ -102,10 +126,6 @@ function cancelNewProject(e) {
 
   sidebar.removeChild(input);
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
-}
-
-function getProject(e) {
-
 }
 
 export default sidebarContainer;
