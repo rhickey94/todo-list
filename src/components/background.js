@@ -1,6 +1,12 @@
-import * as Styles from "../styles/style.js";
+import * as Styles from "../styles/style";
 
 function background() {
+  const mainEl = componentSetup();
+  
+  return mainEl;
+}
+
+function componentSetup() {
   const mainEl = document.createElement("main");
   mainEl.setAttribute("id", "main")
 

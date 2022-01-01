@@ -1,12 +1,22 @@
-import * as Styles from "../../styles/style.js";
+import * as Styles from "../../../styles/style";
 
 function sidebarButton(text) {
-  const button = document.createElement("button");
-  button.setAttribute("class", "sidebarButton");
+  const button = componentSetup(text);
+  
+  addListeners(button);
+  
+  return button;
+}
 
+function componentSetup(text) {
+  const button = document.createElement("button");
+  button.setAttribute("class", "sidebarButton project");
+  
   button.innerHTML = text;
 
-  addListeners(button);
+  if (button.innerHTML.includes("Add")) {
+    button.setAttribute("class", "sidebarButton addNewButton")
+  }
 
   Styles.applyStyle(getStyleString());
   return button;

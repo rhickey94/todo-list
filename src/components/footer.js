@@ -1,6 +1,12 @@
-import * as Styles from "../styles/style.js";
+import * as Styles from "../styles/style";
 
 function footer() {
+  const footer = componentSetup();
+
+  return footer;
+}
+
+function componentSetup() {
   const footer = document.createElement("footer");
   footer.setAttribute("id", "footer");
 
