@@ -91,8 +91,6 @@ function getEnteredProject(e) {
   const input = e.target;
   const projectName = e.detail.text();
 
-  projects[projectName] = todoContainer();
-
   sidebar.removeChild(input);
   sidebar.appendChild(sidebarButton(projectName));
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
