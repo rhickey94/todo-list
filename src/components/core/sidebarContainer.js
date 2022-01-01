@@ -1,6 +1,9 @@
 import * as Styles from "../../styles/style";
 import sidebarButton from "./sidebar/sidebarButton";
 import sidebarInput from "./sidebar/sidebarInput";
+import todoContainer from "./todoContainer";
+
+export const projects = {};
 
 function sidebarContainer() {
   const sidebarEl = componentSetup();
@@ -19,10 +22,10 @@ function componentSetup() {
   sidebarHeading.textContent = "Projects";
 
   sidebarEl.appendChild(sidebarHeading);
-  sidebarEl.appendChild(sidebarButton("Project 1"));
-  sidebarEl.appendChild(sidebarButton("Project 2"));
-  sidebarEl.appendChild(sidebarButton("Project 3"));
-  sidebarEl.appendChild(sidebarButton("Project 4"));
+  // sidebarEl.appendChild(sidebarButton("Project 1"));
+  // sidebarEl.appendChild(sidebarButton("Project 2"));
+  // sidebarEl.appendChild(sidebarButton("Project 3"));
+  // sidebarEl.appendChild(sidebarButton("Project 4"));
   sidebarEl.appendChild(sidebarButton("&plus; Add new project"));
 
   return sidebarEl;
@@ -88,6 +91,8 @@ function getEnteredProject(e) {
   const input = e.target;
   const projectName = e.detail.text();
 
+  projects[projectName] = todoContainer();
+
   sidebar.removeChild(input);
   sidebar.appendChild(sidebarButton(projectName));
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
@@ -99,6 +104,10 @@ function cancelNewProject(e) {
 
   sidebar.removeChild(input);
   sidebar.appendChild(sidebarButton("&plus; Add new project"));
+}
+
+function getProject(e) {
+
 }
 
 export default sidebarContainer;

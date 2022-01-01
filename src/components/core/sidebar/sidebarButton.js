@@ -10,9 +10,13 @@ function sidebarButton(text) {
 
 function componentSetup(text) {
   const button = document.createElement("button");
-  button.setAttribute("class", "sidebarButton");
+  button.setAttribute("class", "sidebarButton project");
   
   button.innerHTML = text;
+
+  if (button.innerHTML.includes("Add")) {
+    button.setAttribute("class", "sidebarButton addNewButton")
+  }
 
   Styles.applyStyle(getStyleString());
   return button;

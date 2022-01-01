@@ -1,5 +1,5 @@
 import * as Styles from "../../styles/style";
-import todoListMenu from "./todoList/todoListMenu";
+import todoContainerMenu from "./todoList/todoContainerMenu";
 import todoList from "./todoList/todoList"
 
 function todoContainer() {
@@ -15,7 +15,7 @@ function componentSetup() {
   const todoListEl = document.createElement("section");
   todoListEl.setAttribute("id", "todoContainer");
 
-  todoListEl.appendChild(todoListMenu());
+  todoListEl.appendChild(todoContainerMenu());
   todoListEl.appendChild(todoList());
 
   return todoListEl;

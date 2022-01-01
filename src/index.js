@@ -12,10 +12,6 @@ function setupPage(contentHook) {
   contentHook.appendChild(footer());
 }
 
-function createProject() {
-  
-}
-
 const hook = document.querySelector("#content");
 setupPage(hook);
 
