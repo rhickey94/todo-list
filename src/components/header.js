@@ -1,7 +1,7 @@
 import * as Styles from "../styles/style";
 
 function header() {
-  const header = componentSetup()
+  const header = componentSetup();
   
   return header;
 }

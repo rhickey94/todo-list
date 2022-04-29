@@ -108,9 +108,10 @@ function selectProject(e) {
   button.classList.add("sidebarButton_selected");
 
   const projectName = button.textContent;
-  const project = projects.getProjects().filter((project) => project.getName() === projectName)[0];
+  const project = projects
+    .getProjects()
+    .filter((selectedProject) => selectedProject.getName() === projectName)[0];
 
-  //set project
   projects.setCurrentProject(project);
 
   const projectTasks = project.getTasks();
